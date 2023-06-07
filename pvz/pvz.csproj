@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cherry.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +133,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\545238__mr_fritz__item-sparkle.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn+.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn!.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn!!.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn!!!.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

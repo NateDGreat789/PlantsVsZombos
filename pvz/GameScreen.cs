@@ -13,6 +13,7 @@ namespace pvz
 {
     public partial class GameScreen : UserControl
     {
+        #region variables
         SoundPlayer plantSound = new SoundPlayer(Properties.Resources.plant);
         SoundPlayer deadagainSound = new SoundPlayer(Properties.Resources.deadagain);
         SoundPlayer peaSound = new SoundPlayer(Properties.Resources.pea);
@@ -21,13 +22,18 @@ namespace pvz
         List<Peatey> peateys = new List<Peatey>();
         List<Pea> peas = new List<Pea>();
         List<Sunny> sunnys = new List<Sunny>();
+        List<Cherry> cherrys = new List<Cherry>();
         List<Zombo> zombos = new List<Zombo>();
+        List<Button> buttons = new List<Button>();
 
+        Pen blackPen = new Pen(Color.Black, 7);
         SolidBrush greenBrush = new SolidBrush(Color.LimeGreen);
         SolidBrush peaBrush = new SolidBrush(Color.ForestGreen);
         SolidBrush sunBrush = new SolidBrush(Color.Gold);
+        SolidBrush cherryBrush = new SolidBrush(Color.Red);
         SolidBrush flashBrush = new SolidBrush(Color.Yellow);
         SolidBrush zomBrush = new SolidBrush(Color.SeaGreen);
+        SolidBrush zomFlashBrush = new SolidBrush(Color.MediumAquamarine);
         SolidBrush redBrush = new SolidBrush(Color.Red);
 
         int zomboLane, zomboHeight;
@@ -37,17 +43,20 @@ namespace pvz
         int sunCounter;
         int peateyCounter;
         int sunnyCounter;
+        int cherryCounter;
         public static double time;
         public static int score;
         string plant;
 
         bool peateyEnabled = true;
         bool sunnyEnabled = true;
+        bool cherryEnabled = true;
         public static bool win;
 
         Random rnd = new Random ();
 
-        public static Rectangle house = new Rectangle(159, 123, 80, 561);
+        public static Rectangle house = new Rectangle(182, 99, 70, 561);
+        #endregion
 
         public GameScreen()
         {
@@ -69,31 +78,37 @@ namespace pvz
             sunnys.Clear();
             zombos.Clear();
 
-            button1.Visible = true;
-            button2.Visible = true;
-            button3.Visible = true;
-            button4.Visible = true;
-            button5.Visible = true;
-            button6.Visible = true;
-            button7.Visible = true;
-            button8.Visible = true;
-            button9.Visible = true;
-            button10.Visible = true;
-            button11.Visible = true;
-            button12.Visible = true;
-            button13.Visible = true;
-            button14.Visible = true;
-            button15.Visible = true;
-            button16.Visible = true;
-            button17.Visible = true;
-            button18.Visible = true;
-            button19.Visible = true;
-            button20.Visible = true;
+            buttons.Add(button1);
+            buttons.Add(button2);
+            buttons.Add(button3);
+            buttons.Add(button4);
+            buttons.Add(button5);
+            buttons.Add(button6);
+            buttons.Add(button7);
+            buttons.Add(button8);
+            buttons.Add(button9);
+            buttons.Add(button10);
+            buttons.Add(button11);
+            buttons.Add(button12);
+            buttons.Add(button13);
+            buttons.Add(button14);
+            buttons.Add(button15);
+            buttons.Add(button16);
+            buttons.Add(button17);
+            buttons.Add(button18);
+            buttons.Add(button19);
+            buttons.Add(button20);
+
+
+            foreach (Button b in buttons)
+            {
+                b.Visible = true;
+            }
         }
 
         public void PlacePeatey(int x, int y)
         {
-            Peatey newPeatey = new Peatey(x + 15, y + 10);
+            Peatey newPeatey = new Peatey(x + 15, y + 5);
             peateys.Add(newPeatey);
             sun -= 100;
             peateyCounter++;
@@ -103,7 +118,7 @@ namespace pvz
 
         public void PlaceSunny(int x, int y)
         {
-            Sunny newSunny = new Sunny(x + 5, y + 35);
+            Sunny newSunny = new Sunny(x + 5, y + 25);
             sunnys.Add(newSunny);
             sun -= 50;
             sunnyCounter++;
@@ -111,28 +126,38 @@ namespace pvz
             sunnyEnabled = false;
         }
 
+        public void PlaceCherry(int x, int y)
+        {
+            Cherry newCherry = new Cherry(x + 5, y + 5);
+            cherrys.Add(newCherry);
+            sun -= 150;
+            cherryCounter++;
+            plantSound.Play();
+            cherryEnabled = false;
+        }
+
         public void SpawnZombo()
         {
             zomboLane = rnd.Next(0, 5);
             if (zomboLane == 0)
             {
-                zomboHeight = 123;
+                zomboHeight = 101;
             }
             else if (zomboLane == 1)
             {
-                zomboHeight = 239;
+                zomboHeight = 217;
             }
             else if (zomboLane == 2)
             {
-                zomboHeight = 355;
+                zomboHeight = 333;
             }
             else if (zomboLane == 3)
             {
-                zomboHeight = 471;
+                zomboHeight = 449;
             }
             else if (zomboLane == 4)
             {
-                zomboHeight = 587;
+                zomboHeight = 565;
             }
             Zombo newZombo = new Zombo(1300, zomboHeight);
             zombos.Add(newZombo);
@@ -142,11 +167,13 @@ namespace pvz
         {
             for (int i = 0; i < peateys.Count; i++)
             {
+                e.Graphics.DrawRectangle(blackPen, peateys[i].x, peateys[i].y, peateys[i].width, peateys[i].height);
                 e.Graphics.FillRectangle(greenBrush, peateys[i].x, peateys[i].y, peateys[i].width, peateys[i].height);
             }
 
             for (int i = 0; i < peas.Count; i++)
             {
+                e.Graphics.DrawRectangle(blackPen, peas[i].x, peas[i].y, peas[i].size, peas[i].size);
                 e.Graphics.FillRectangle(peaBrush, peas[i].x, peas[i].y, peas[i].size, peas[i].size);
             }
 
@@ -154,17 +181,28 @@ namespace pvz
             {
                 if (sunnys[i].flash == true)
                 {
+                    e.Graphics.DrawRectangle(blackPen, sunnys[i].x, sunnys[i].y, sunnys[i].width, sunnys[i].height);
                     e.Graphics.FillRectangle(flashBrush, sunnys[i].x, sunnys[i].y, sunnys[i].width, sunnys[i].height);
                 }
                 else
                 {
+                    e.Graphics.DrawRectangle(blackPen, sunnys[i].x, sunnys[i].y, sunnys[i].width, sunnys[i].height);
                     e.Graphics.FillRectangle(sunBrush, sunnys[i].x, sunnys[i].y, sunnys[i].width, sunnys[i].height);
                 }
             }
 
             for (int i = 0; i < zombos.Count; i++)
             {
-                e.Graphics.FillRectangle(zomBrush, zombos[i].x, zombos[i].y, zombos[i].width, zombos[i].height);
+                if (zombos[i].flash == true)
+                {
+                    e.Graphics.DrawRectangle(blackPen, zombos[i].x, zombos[i].y, zombos[i].width, zombos[i].height);
+                    e.Graphics.FillRectangle(zomFlashBrush, zombos[i].x, zombos[i].y, zombos[i].width, zombos[i].height);
+                }
+                else
+                {
+                    e.Graphics.DrawRectangle(blackPen, zombos[i].x, zombos[i].y, zombos[i].width, zombos[i].height);
+                    e.Graphics.FillRectangle(zomBrush, zombos[i].x, zombos[i].y, zombos[i].width, zombos[i].height);
+                }
             }
 
             e.Graphics.FillRectangle(redBrush, house);
@@ -172,7 +210,17 @@ namespace pvz
 
         private void gameEngine_Tick(object sender, EventArgs e)
         {
+            #region counters
             time++;
+
+            sunCounter++;
+            if (sunCounter == 125)
+            {
+                sun += 25;
+                sunCounter = 0;
+            }
+            sunLabel.Text = $"Sun: {sun}";
+
             if (peateyCounter > 0)
             {
                 peateyCounter++;
@@ -193,20 +241,25 @@ namespace pvz
                 }
             }
 
-            zomboCounter++;
-            if (zomboCounter == zomboTimer)
+            if (cherryCounter > 0)
             {
-                SpawnZombo();
-                zomboCounter = 0;
-                if (zomboTimer >= 100)
+                cherryCounter++;
+                if (cherryCounter == 100)
                 {
-                    zomboTimer -= 20;
+                    cherryEnabled = true;
+                    cherryCounter = 0;
                 }
             }
 
-            foreach (Zombo z in zombos)
+            for (int i = 0; i < peateys.Count; i++)
             {
-                z.Move();
+                peateys[i].counter++;
+
+                if (peateys[i].counter > 85)
+                {
+                    Shoot(peateys[i].x, peateys[i].y);
+                    peateys[i].counter = 0;
+                }
             }
 
             foreach (Sunny s in sunnys)
@@ -233,17 +286,48 @@ namespace pvz
                 }
             }
 
-            for (int i = 0; i < peateys.Count; i++)
+            for (int i = 0; i < cherrys.Count; i++)
             {
-                peateys[i].counter++;
+                cherrys[i].counter++;
 
-                if (peateys[i].counter > 85)
+                if (cherrys[i].counter > 50)
                 {
-                    Shoot(peateys[i].x, peateys[i].y);
-                    peateys[i].counter = 0;
+                    cherrys.RemoveAt(i);
                 }
             }
 
+            foreach (Zombo z in zombos)
+            {
+                if (z.flash == true)
+                {
+                    z.flashCounter++;
+                }
+
+                if (z.flashCounter >= 5)
+                {
+                    z.flash = false;
+                    z.flashCounter = 0;
+                }
+            }
+
+            zomboCounter++;
+            if (zomboCounter == zomboTimer)
+            {
+                SpawnZombo();
+                zomboCounter = 0;
+                if (zomboTimer >= 100)
+                {
+                    zomboTimer -= 20;
+                }
+            }
+#endregion
+
+            foreach (Zombo z in zombos)
+            {
+                z.Move();
+            }
+
+            #region collision
             for (int i = 0; i < peas.Count; i++)
             {
                 peas[i].Move();
@@ -254,6 +338,7 @@ namespace pvz
                     {
                         peas.Remove(peas[i]);
                         z.health--;
+                        z.flash = true;
                         peaSound.Play();
 
                         if (z.health < 1)
@@ -268,22 +353,93 @@ namespace pvz
                 }
             }
 
+            for (int i = 0; i < peateys.Count; i++)
+            {
+                foreach (Zombo z in zombos)
+                {
+                    try
+                    {
+                        if (z.PlantCollision(peateys[i]))
+                        {
+                            z.speed = 0;
+                            peateys[i].hp--;
+                            if (peateys[i].hp < 1)
+                            {
+                                peateys.Remove(peateys[i]);
+                                z.speed = 1;
+                            }
+                        }
+                        else
+                        {
+                            z.speed = 1;
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+
+            for (int i = 0; i < sunnys.Count; i++)
+            {
+                foreach (Zombo z in zombos)
+                {
+                    try
+                    {
+                        if (z.PlantCollision(sunnys[i]))
+                        {
+                            z.speed = 0;
+                            sunnys[i].hp--;
+                            if (sunnys[i].hp < 1)
+                            {
+                                sunnys.Remove(sunnys[i]);
+                                z.speed = 1;
+                            }
+                        }
+                        else
+                        {
+                            z.speed = 1;
+                        }
+                    }
+                    catch 
+                    { 
+
+                    }
+                }
+            }
+
+            for (int i = 0; i < cherrys.Count; i++)
+            {
+                foreach (Zombo z in zombos)
+                {
+                    if (z.PlantCollision(cherrys[i]))
+                    {
+                        z.speed = 0;
+                        sunnys[i].hp--;
+                        if (sunnys[i].hp < 1)
+                        {
+                            sunnys.Remove(sunnys[i]);
+                            z.speed = 1;
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+
             foreach (Zombo z in zombos)
             {
-                if (z.Collision() == true)
+                if (z.HouseCollision() == true)
                 {
                     GameOver("lose");
                 }
             }
+            #endregion
 
-            sunCounter++;
-            if (sunCounter == 125)
-            {
-                sun += 25;
-                sunCounter = 0;
-            }
-            sunLabel.Text = $"Sun: {sun}";
-
+            #region plantButtons
             if (plant == "peatey" && peateyEnabled == true)
             {
                 peateyButton.BackColor = Color.LimeGreen;
@@ -309,6 +465,7 @@ namespace pvz
             {
                 sunnyButton.BackColor = Color.Gainsboro;
             }
+            #endregion
 
             if (score >= 20)
             {
@@ -326,347 +483,146 @@ namespace pvz
             peas.Add(newPea);
         }
 
-        #region buttons
+        #region lawnButtons
         private void button1_Click(object sender, EventArgs e)
         {
-            int x = 262;
-            int y = 123;
-            
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button1.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button1.Visible = false;
-            }
+            plantPlant(button1, 280, 101);
         }
         
         private void button2_Click(object sender, EventArgs e)
         {
-            int x = 262;
-            int y = 239;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button2.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button2.Visible = false;
-            }
+            plantPlant(button2, 280, 217);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int x = 262;
-            int y = 355;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button3.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button3.Visible = false;
-            }
+            plantPlant(button3, 280, 333);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int x = 262;
-            int y = 471;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button4.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button4.Visible = false;
-            }
+            plantPlant(button4, 280, 449);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            int x = 262;
-            int y = 587;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button5.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button5.Visible = false;
-            }
+            plantPlant(button5, 280, 565);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            int x = 410;
-            int y = 123;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button6.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button6.Visible = false;
-            }
+            plantPlant(button6, 376, 101);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            int x = 410;
-            int y = 239;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button7.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button7.Visible = false;
-            }
+            plantPlant(button7, 376, 217);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            int x = 410;
-            int y = 355;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button8.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button8.Visible = false;
-            }
+            plantPlant(button8, 376, 333);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            int x = 410;
-            int y = 471;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button9.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button9.Visible = false;
-            }
+            plantPlant(button9, 376, 449);
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            int x = 410;
-            int y = 587;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button10.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button10.Visible = false;
-            }
+            plantPlant(button10, 376, 565);
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            int x = 554;
-            int y = 123;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button11.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button11.Visible = false;
-            }
+            plantPlant(button11, 472, 101);
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-            int x = 554;
-            int y = 239;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button12.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button12.Visible = false;
-            }
+            plantPlant(button12, 472, 217);
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            int x = 554;
-            int y = 355;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button13.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button13.Visible = false;
-            }
+            plantPlant(button13, 472, 333);
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
-            int x = 554;
-            int y = 471;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button14.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button14.Visible = false;
-            }
+            plantPlant(button14, 472, 449);
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
-            int x = 554;
-            int y = 587;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button15.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button15.Visible = false;
-            }
+            plantPlant(button15, 472, 565);
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
-            int x = 697;
-            int y = 123;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button16.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button16.Visible = false;
-            }
+            plantPlant(button16, 569, 101);
         }
 
         private void button17_Click(object sender, EventArgs e)
         {
-            int x = 697;
-            int y = 239;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button17.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button17.Visible = false;
-            }
+            plantPlant(button17, 569, 217);
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
-            int x = 697;
-            int y = 355;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button18.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button18.Visible = false;
-            }
+            plantPlant(button18, 569, 333);
         }
 
         private void button19_Click(object sender, EventArgs e)
         {
-            int x = 697;
-            int y = 471;
-
-            if (peateyEnabled == true && plant == "peatey" && sun >= 100)
-            {
-                PlacePeatey(x, y);
-                button19.Visible = false;
-            }
-            else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
-            {
-                PlaceSunny(x, y);
-                button19.Visible = false;
-            }
+            plantPlant(button19, 569, 449);
         }
 
         private void button20_Click(object sender, EventArgs e)
         {
-            int x = 697;
-            int y = 587;
+            plantPlant(button20, 569, 565);
+        }
 
+        private void button21_Click(object sender, EventArgs e)
+        {
+            plantPlant(button21, 665, 101);
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            plantPlant(button22, 665, 217);
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            plantPlant(button23, 665, 333);
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            plantPlant(button24, 665, 449);
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            plantPlant(button25, 665, 565);
+        }
+        #endregion
+
+        private void plantPlant(Button b, int x, int y)
+        {
             if (peateyEnabled == true && plant == "peatey" && sun >= 100)
             {
                 PlacePeatey(x, y);
-                button20.Visible = false;
+                b.Visible = false;
             }
             else if (sunnyEnabled == true && plant == "sunny" && sun >= 50)
             {
                 PlaceSunny(x, y);
-                button20.Visible = false;
+                b.Visible = false;
             }
         }
-        #endregion
         
         private void peateyButton_Click(object sender, EventArgs e)
         {

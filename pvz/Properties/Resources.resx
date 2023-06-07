@@ -121,6 +121,15 @@
   <data name="deadagain" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\639748__ryanz-official__thump.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="lawn_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lawn!.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lawn__" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lawn!!.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lawn___" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lawn!!!.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="pea" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\483991__joao_janz__punch-2_4.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

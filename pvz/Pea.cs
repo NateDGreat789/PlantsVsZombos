@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace pvz
 {
-    internal class Pea
+    public class Pea
     {
         public int x, y;
         public int size = 30;

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace pvz
 {
-    internal class Peatey
+    public class Peatey
     {
         public int x, y;
-        public int width = 65;
-        public int height = 90;
+        public int width = 60;
+        public int height = 80;
         public int counter = 25;
+        public int hp = 100;
 
         public Peatey(int _x, int _y)
         {
