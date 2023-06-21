@@ -13,11 +13,13 @@ namespace pvz
         public int height = 80;
         public int counter = 25;
         public int hp = 100;
+        public string type;
 
-        public Peatey(int _x, int _y)
+        public Peatey(int _x, int _y, string _type)
         {
             x = _x;
             y = _y;
+            type = _type;
         }
     }
 }

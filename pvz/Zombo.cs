@@ -12,20 +12,51 @@ namespace pvz
         public int x, y;
         public int width = 70;
         public int height = 90;
-        public int speed = 5;
-        public int health = 5;
+        public int speed = 1;
+        public int hp;
         public int flashCounter = 0;
+        public bool slow = false;
+        public int slowCounter = 0;
         public bool flash = false;
+        public string type;
 
-        public Zombo (int _x, int _y)
+        public Zombo (int _x, int _y, string _type)
         {
             x = _x;
             y = _y;
+            type = _type;
+            if (type == "normal")
+            {
+                hp = 5;
+            }
+            else if (type == "cone")
+            {
+                hp = 10;
+            }
+            else if (type == "bucket")
+            {
+                hp = 15;
+            }
         }
 
         public void Move()
         {
-            x -= speed;
+            if (slow == true)
+            {
+                slowCounter++;
+                if (slowCounter %2 == 0)
+                {
+                    x -= speed;
+                }
+                if (slowCounter > 100)
+                {
+                    slow = false;
+                }
+            }
+            else
+            {
+                x -= speed;
+            }
         }
 
         public bool HouseCollision()
@@ -33,30 +64,6 @@ namespace pvz
             Rectangle zombRec = new Rectangle(x, y, width, height);
 
             if (zombRec.IntersectsWith(GameScreen.house))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool PlantCollision(Peatey p)
-        {
-            Rectangle zombRec = new Rectangle(x, y, width, height);
-            Rectangle peateyRec = new Rectangle(p.x, p.y, p.width, p.height);
-            
-            if (zombRec.IntersectsWith(peateyRec))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool PlantCollision(Sunny s)
-        {
-            Rectangle zombRec = new Rectangle(x, y, width, height);
-            Rectangle sunnyRec = new Rectangle(s.x, s.y, s.width, s.height);
-
-            if (zombRec.IntersectsWith(sunnyRec))
             {
                 return true;
             }
@@ -92,5 +99,29 @@ namespace pvz
             }
             return false;
         }
+
+        //public bool PlantCollision(Peatey p)
+        //{
+        //    Rectangle zombRec = new Rectangle(x, y, width, height);
+        //    Rectangle peateyRec = new Rectangle(p.x, p.y, p.width, p.height);
+
+        //    if (zombRec.IntersectsWith(peateyRec))
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
+
+        //public bool PlantCollision(Sunny s)
+        //{
+        //    Rectangle zombRec = new Rectangle(x, y, width, height);
+        //    Rectangle sunnyRec = new Rectangle(s.x, s.y, s.width, s.height);
+
+        //    if (zombRec.IntersectsWith(sunnyRec))
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
     }
 }

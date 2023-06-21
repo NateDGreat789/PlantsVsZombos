@@ -68,6 +68,12 @@
     <Compile Include="GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="LevelScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LevelScreen.Designer.cs">
+      <DependentUpon>LevelScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LevelScreen.resx">
+      <DependentUpon>LevelScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
@@ -148,6 +157,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\lawn!!!.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn3b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn3t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lawn3+.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\progression.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

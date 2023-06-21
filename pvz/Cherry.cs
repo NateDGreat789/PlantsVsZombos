@@ -12,6 +12,7 @@ namespace pvz
         public int width = 50;
         public int height = 50;
         public int counter = 0;
+        public int boomCounter = 0;
         public bool boom = false;
 
         public Cherry(int _x, int _y)
@@ -23,7 +24,10 @@ namespace pvz
         public void Boom()
         {
             boom = true;
-
+            width = 220;
+            height = 220;
+            x -= 70;
+            y -= 110;
         }
     }
 }

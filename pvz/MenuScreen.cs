@@ -17,9 +17,15 @@ namespace pvz
             InitializeComponent();
         }
 
-        private void playButton_Click(object sender, EventArgs e)
+        private void endlessButton_Click(object sender, EventArgs e)
         {
+            GameScreen.level = 0;
             Form1.ChangeScreen(this, new GameScreen());
+        }
+
+        private void storyButton_Click(object sender, EventArgs e)
+        {
+            Form1.ChangeScreen(this, new LevelScreen());
         }
     }
 }

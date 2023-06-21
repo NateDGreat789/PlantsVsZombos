@@ -12,11 +12,13 @@ namespace pvz
         public int x, y;
         public int size = 30;
         public int speed = 10;
+        public string type;
 
-        public Pea(int _x, int _y)
+        public Pea(int _x, int _y, string _type)
         {
             x = _x;
             y = _y;
+            type = _type;
         }
 
         public void Move()

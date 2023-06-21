@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace pvz
 {
@@ -34,11 +35,26 @@ namespace pvz
                 f.Controls.Remove(current);
             }
 
-            
+
             next.Location = new Point((f.ClientSize.Width - next.Width) / 2,
                 (f.ClientSize.Height - next.Height) / 2);
             f.Controls.Add(next);
             next.Focus();
+        }
+
+        public static void CheckProgress()
+        {
+            XmlReader reader = XmlReader.Create("Resources/progression.xml", null);
+
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    LevelScreen.progress = reader.ReadString();
+                }
+            }
+
+            reader.Close();
         }
     }
 }
