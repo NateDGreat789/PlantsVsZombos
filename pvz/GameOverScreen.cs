@@ -19,14 +19,25 @@ namespace pvz
 
             if (GameScreen.win == false)
             {
+                gameOverLabel.Text = $"THE ZOMBOS ATE YOUR BRAINS!!";
+
                 if (GameScreen.level == 0)
                 {
-                    gameOverLabel.Text = $"THE ZOMBOS ATE YOUR BRAINS!!";
-                    resultsLabel.Text = $"Your score: {GameScreen.score}";
+                    if (GameScreen.score > LevelScreen.highscore)
+                    {
+                        LevelScreen.highscore = GameScreen.score;
+                        resultsLabel.Text = $"Your score: {GameScreen.score}\nNew highscore!";
+                    }
+                    else
+                    {
+                        resultsLabel.Text = $"Your score: {GameScreen.score}\nHighscore: {LevelScreen.highscore}";
+                    }
+                    
+
                 }
                 else
                 {
-
+                    resultsLabel.Text = "Try again?";
                 }
             }
 
@@ -63,22 +74,9 @@ namespace pvz
                     gameOverLabel.Text = $"LEVEL CLEARED";
                     resultsLabel.Text = $"YOU HAVE VANQUISHED THE ZOMBOS! Congratulations, your brains are saved!";
                 }
-                SaveProgress();
             }
+            SaveProgress();
         }
-
-        //public void SaveHighscore()
-        //{
-        //    XmlWriter writer = XmlWriter.Create("Resources/progression.xml", null);
-
-        //    writer.WriteStartElement("Game");
-
-        //    writer.WriteElementString("highscore", Convert.ToString(GameScreen.score));
-
-        //    writer.WriteEndElement();
-
-        //    writer.Close();
-        //}
 
         public static void SaveProgress()
         {
@@ -87,6 +85,7 @@ namespace pvz
             writer.WriteStartElement("Game");
 
             writer.WriteElementString("levelscleared", Convert.ToString(GameScreen.level));
+            writer.WriteElementString("highscore", Convert.ToString(LevelScreen.highscore));
 
             writer.WriteEndElement();
 

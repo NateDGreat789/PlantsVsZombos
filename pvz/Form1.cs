@@ -44,6 +44,8 @@ namespace pvz
 
         public static void CheckProgress()
         {
+            string xmlScore;
+
             XmlReader reader = XmlReader.Create("Resources/progression.xml", null);
 
             while (reader.Read())
@@ -51,6 +53,11 @@ namespace pvz
                 if (reader.NodeType == XmlNodeType.Text)
                 {
                     LevelScreen.progress = reader.ReadString();
+
+                    reader.ReadToNextSibling("highscore");
+
+                    xmlScore = reader.ReadString();
+                    LevelScreen.highscore = Convert.ToInt32((xmlScore));
                 }
             }
 

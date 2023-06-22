@@ -42,7 +42,7 @@
             // levelLabel
             // 
             this.levelLabel.Font = new System.Drawing.Font("Goudy Stout", 40.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.levelLabel.Location = new System.Drawing.Point(3, 0);
+            this.levelLabel.Location = new System.Drawing.Point(3, 29);
             this.levelLabel.Name = "levelLabel";
             this.levelLabel.Size = new System.Drawing.Size(1294, 249);
             this.levelLabel.TabIndex = 1;
@@ -53,7 +53,7 @@
             // 
             this.level1.BackColor = System.Drawing.Color.MediumAquamarine;
             this.level1.Font = new System.Drawing.Font("Goudy Stout", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.level1.Location = new System.Drawing.Point(77, 332);
+            this.level1.Location = new System.Drawing.Point(72, 301);
             this.level1.Name = "level1";
             this.level1.Size = new System.Drawing.Size(150, 150);
             this.level1.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             this.level2.BackColor = System.Drawing.Color.MediumAquamarine;
             this.level2.Font = new System.Drawing.Font("Goudy Stout", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.level2.Location = new System.Drawing.Point(278, 332);
+            this.level2.Location = new System.Drawing.Point(273, 301);
             this.level2.Name = "level2";
             this.level2.Size = new System.Drawing.Size(150, 150);
             this.level2.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             this.level3.BackColor = System.Drawing.Color.MediumAquamarine;
             this.level3.Font = new System.Drawing.Font("Goudy Stout", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.level3.Location = new System.Drawing.Point(476, 332);
+            this.level3.Location = new System.Drawing.Point(471, 301);
             this.level3.Name = "level3";
             this.level3.Size = new System.Drawing.Size(150, 150);
             this.level3.TabIndex = 4;
@@ -90,7 +90,7 @@
             this.level6.BackColor = System.Drawing.Color.Black;
             this.level6.Font = new System.Drawing.Font("Goudy Stout", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.level6.ForeColor = System.Drawing.Color.White;
-            this.level6.Location = new System.Drawing.Point(1075, 332);
+            this.level6.Location = new System.Drawing.Point(1070, 301);
             this.level6.Name = "level6";
             this.level6.Size = new System.Drawing.Size(150, 150);
             this.level6.TabIndex = 7;
@@ -102,7 +102,7 @@
             // 
             this.level5.BackColor = System.Drawing.Color.MediumAquamarine;
             this.level5.Font = new System.Drawing.Font("Goudy Stout", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.level5.Location = new System.Drawing.Point(877, 332);
+            this.level5.Location = new System.Drawing.Point(872, 301);
             this.level5.Name = "level5";
             this.level5.Size = new System.Drawing.Size(150, 150);
             this.level5.TabIndex = 6;
@@ -114,7 +114,7 @@
             // 
             this.level4.BackColor = System.Drawing.Color.MediumAquamarine;
             this.level4.Font = new System.Drawing.Font("Goudy Stout", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.level4.Location = new System.Drawing.Point(676, 332);
+            this.level4.Location = new System.Drawing.Point(671, 301);
             this.level4.Name = "level4";
             this.level4.Size = new System.Drawing.Size(150, 150);
             this.level4.TabIndex = 5;
@@ -127,7 +127,7 @@
             this.menuButton.BackColor = System.Drawing.Color.SeaGreen;
             this.menuButton.Font = new System.Drawing.Font("Goudy Stout", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuButton.ForeColor = System.Drawing.Color.White;
-            this.menuButton.Location = new System.Drawing.Point(207, 525);
+            this.menuButton.Location = new System.Drawing.Point(202, 494);
             this.menuButton.Name = "menuButton";
             this.menuButton.Size = new System.Drawing.Size(419, 120);
             this.menuButton.TabIndex = 8;
@@ -140,7 +140,7 @@
             this.button1.BackColor = System.Drawing.Color.SeaGreen;
             this.button1.Font = new System.Drawing.Font("Goudy Stout", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(676, 525);
+            this.button1.Location = new System.Drawing.Point(671, 494);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(419, 120);
             this.button1.TabIndex = 9;

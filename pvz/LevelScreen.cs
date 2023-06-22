@@ -14,25 +14,25 @@ namespace pvz
     public partial class LevelScreen : UserControl
     {
         public static string progress = "0";
+        public static int highscore = 0;
 
         public LevelScreen()
         {
             InitializeComponent();
 
             Form1.CheckProgress();
-            levelLabel.Text = $"{LevelScreen.progress}";
 
             LoadButtons();
         }
 
         public void LoadButtons()
         {
-            level1.Enabled = false;
-            level2.Enabled = false;
-            level3.Enabled = false;
-            level4.Enabled = false;
-            level5.Enabled = false;
-            level6.Enabled = false;
+            level1.Enabled = true;
+            level2.Enabled = true;
+            level3.Enabled = true;
+            level4.Enabled = true;
+            level5.Enabled = true;
+            level6.Enabled = true;
 
             level1.BackColor = Color.MediumAquamarine;
             level2.BackColor = Color.MediumAquamarine;
@@ -44,53 +44,53 @@ namespace pvz
 
             if (progress == "0")
             {
-                level1.Enabled = true;
                 level2.BackColor = Color.Gray;
                 level3.BackColor = Color.Gray;
                 level4.BackColor = Color.Gray;
                 level5.BackColor = Color.Gray;
                 level6.ForeColor = Color.Black;
                 level6.BackColor = Color.DimGray;
+                level2.Enabled = false;
+                level3.Enabled = false;
+                level4.Enabled = false;
+                level5.Enabled = false;
+                level6.Enabled = false;
             }
             else if (progress == "1")
             {
-                level1.Enabled = true;
-                level2.Enabled = true;
                 level3.BackColor = Color.Gray;
                 level4.BackColor = Color.Gray;
                 level5.BackColor = Color.Gray;
                 level6.ForeColor = Color.Black;
                 level6.BackColor = Color.DimGray;
+                level3.Enabled = false;
+                level4.Enabled = false;
+                level5.Enabled = false;
+                level6.Enabled = false;
             }
             else if (progress == "2")
             {
-                level1.Enabled = true;
-                level2.Enabled = true;
-                level3.Enabled = true;
                 level4.BackColor = Color.Gray;
                 level5.BackColor = Color.Gray;
                 level6.ForeColor = Color.Black;
                 level6.BackColor = Color.DimGray;
+                level4.Enabled = false;
+                level5.Enabled = false;
+                level6.Enabled = false;
             }
             else if (progress == "3")
             {
-                level1.Enabled = true;
-                level2.Enabled = true;
-                level3.Enabled = true;
-                level4.Enabled = true;
                 level5.BackColor = Color.Gray;
                 level6.ForeColor = Color.Black;
                 level6.BackColor = Color.DimGray;
+                level5.Enabled = false;
+                level6.Enabled = false;
             }
             else if (progress == "4")
             {
-                level1.Enabled = true;
-                level2.Enabled = true;
-                level3.Enabled = true;
-                level4.Enabled = true;
-                level5.Enabled = true;
                 level6.ForeColor = Color.Black;
                 level6.BackColor = Color.DimGray;
+                level6.Enabled = false;
             }
         }
 

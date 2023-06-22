@@ -15,6 +15,9 @@ namespace pvz
         public MenuScreen()
         {
             InitializeComponent();
+
+            Form1.CheckProgress();
+            highscoreLabel.Text = $"Endless mode highscore: {Convert.ToString(LevelScreen.highscore)}";
         }
 
         private void endlessButton_Click(object sender, EventArgs e)

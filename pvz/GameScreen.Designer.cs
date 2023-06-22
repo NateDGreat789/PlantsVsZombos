@@ -54,7 +54,6 @@
             this.peateyButton = new System.Windows.Forms.Button();
             this.sunnyButton = new System.Windows.Forms.Button();
             this.houseLabel = new System.Windows.Forms.Label();
-            this.timeLabel = new System.Windows.Forms.Label();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -300,9 +299,9 @@
             // 
             this.sunLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sunLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sunLabel.Location = new System.Drawing.Point(156, 16);
+            this.sunLabel.Location = new System.Drawing.Point(251, 9);
             this.sunLabel.Name = "sunLabel";
-            this.sunLabel.Size = new System.Drawing.Size(197, 46);
+            this.sunLabel.Size = new System.Drawing.Size(142, 46);
             this.sunLabel.TabIndex = 40;
             this.sunLabel.Text = "label1";
             // 
@@ -341,16 +340,6 @@
             this.houseLabel.TabIndex = 44;
             this.houseLabel.Text = "Y\r\nO\r\nU\r\nR\r\n\r\nH\r\nO\r\nU\r\nS\r\nE";
             this.houseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // timeLabel
-            // 
-            this.timeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeLabel.Location = new System.Drawing.Point(454, 16);
-            this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(197, 46);
-            this.timeLabel.TabIndex = 45;
-            this.timeLabel.Text = "label1";
             // 
             // button21
             // 
@@ -474,7 +463,6 @@
             this.Controls.Add(this.button23);
             this.Controls.Add(this.button24);
             this.Controls.Add(this.button25);
-            this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.houseLabel);
             this.Controls.Add(this.sunnyButton);
             this.Controls.Add(this.peateyButton);
@@ -540,7 +528,6 @@
         private System.Windows.Forms.Button peateyButton;
         private System.Windows.Forms.Button sunnyButton;
         private System.Windows.Forms.Label houseLabel;
-        private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button23;

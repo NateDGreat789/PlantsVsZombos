@@ -143,7 +143,7 @@ namespace pvz
             x.Add(472);
             buttons.Add(button15);
             y.Add(565);
-            x.Add(569);
+            x.Add(472);
             buttons.Add(button16);
             y.Add(101);
             x.Add(569);
@@ -594,9 +594,19 @@ namespace pvz
             {
                 SpawnZombo();
                 zomboCounter = 0;
-                if (zomboTimer >= 100)
+                if (level != 0)
                 {
-                    zomboTimer -= 20;
+                    if (zomboTimer >= 100)
+                    {
+                        zomboTimer -= 20;
+                    }
+                }
+                else
+                {
+                    if (zomboTimer >= 60)
+                    {
+                        zomboTimer -= 20;
+                    }
                 }
             }
 #endregion
